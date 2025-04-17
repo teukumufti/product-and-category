@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../../store/productSlice'
 import { deleteProduct } from '@/services/productApi'
-import { RootState } from '../../store'
+import { RootState, AppDispatch } from '@/store'
 import ProductForm from '@/components/organism/ProductForm'
 
 const ProductPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { data: products, loading } = useSelector((state: RootState) => state.products)
 
   const [query, setQuery] = useState('')

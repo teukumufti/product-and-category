@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategories } from '../../store/categorySlice'
 import { deleteCategory } from '@/services/categoryApi'
 import CategoryForm from '@/components/organism/categoryForm'
-import { RootState } from '../../store'
+import { RootState, AppDispatch } from '@/store'
 
 const CategoriesPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { data: categories, loading } = useSelector((state: RootState) => state.categories)
 
   const [query, setQuery] = useState('')
