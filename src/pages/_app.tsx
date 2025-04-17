@@ -1,6 +1,25 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import '@/styles/globals.css'
+import { Provider } from 'react-redux'
+import { store } from '@/store'
+import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
+import Layout from '@/layout'
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  const noLayout = ['/login'].includes(router.pathname)
+
+  return (
+    <Provider store={store}>
+      {noLayout ? (
+        <Component {...pageProps} />
+      ) : (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      )}
+    </Provider>
+  )
 }
+
+export default App
