@@ -4,6 +4,7 @@ import { store } from '@/store'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Layout from '@/layout'
+import { Toaster } from 'react-hot-toast'
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -15,6 +16,7 @@ function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       ) : (
         <Layout>
+          <Toaster position="top-center" />
           <Component {...pageProps} />
         </Layout>
       )}
